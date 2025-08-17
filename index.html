@@ -5,7 +5,7 @@
 <title>Video hot nhất lúc này</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-  /* === Loading spinner styles === */
+  /* --- Tất cả phần CSS giữ nguyên không đổi --- */
   #loadingScreen {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -222,7 +222,6 @@
     display: none;
   }
 
-  /* Footer cố định + icon + hover */
   footer {
     position: fixed;
     bottom: 0;
@@ -258,7 +257,6 @@
 </head>
 <body>
 
-<!-- Loading Screen -->
 <div id="loadingScreen">
   <div id="loadingSpinner">
     <div></div><div></div><div></div><div></div><div></div><div></div>
@@ -266,7 +264,6 @@
   </div>
 </div>
 
-<!-- Thanh trên cùng -->
 <div id="topBar" style="display:none;">
   <label id="toggleDarkMode" class="switch">
     <input type="checkbox" id="modeToggle" />
@@ -304,14 +301,12 @@
   </div>
 </div>
 
-<!-- Quảng cáo overlay -->
 <div class="overlay-ad" id="adBox">
   <button class="close-btn" id="closeAd">X</button>
   <img id="quangcao-img" src="quangcao.jpg" alt="Quảng cáo" />
 </div>
 <div id="overlayBlock"></div>
 
-<!-- Footer cố định -->
 <footer>
   <a href="#" onclick="return false;" class="footer-link"><i class="fa-solid fa-house fa-2x"></i><br>Trang Chủ</a>
   <a href="#" onclick="return false;" class="footer-link"><i class="fa-solid fa-compass fa-2x"></i><br>Khám Phá</a>
@@ -329,9 +324,17 @@
     }, 500);
   });
 
-  function disableScroll() { document.body.style.overflow = "hidden"; document.addEventListener("touchmove", preventScroll, { passive: false }); }
-  function enableScroll() { document.body.style.overflow = ""; document.removeEventListener("touchmove", preventScroll); }
-  function preventScroll(e) { e.preventDefault(); }
+  function disableScroll() {
+    document.body.style.overflow = "hidden";
+    document.addEventListener("touchmove", preventScroll, { passive: false });
+  }
+  function enableScroll() {
+    document.body.style.overflow = "";
+    document.removeEventListener("touchmove", preventScroll);
+  }
+  function preventScroll(e) {
+    e.preventDefault();
+  }
 
   const modeToggle = document.getElementById("modeToggle");
   const videoContainer = document.getElementById("videoContainer");
@@ -342,6 +345,7 @@
   const overlayBlock = document.getElementById("overlayBlock");
 
   const searchLink = "https://vt.tiktok.com/ZSHGJRAfnXjvT-FDCK5/";
+  const adLink = "https://vt.tiktok.com/ZSA1aKx8J/";
 
   if (localStorage.getItem("darkMode") === "enabled") {
     document.body.classList.add("dark-mode");
@@ -358,7 +362,6 @@
     }
   });
 
-  // Hiển thị quảng cáo sau 1 giây, làm mờ nội dung và khóa cuộn
   setTimeout(() => {
     adBox.style.display = "flex";
     videoContainer.classList.add("blurred");
@@ -367,7 +370,7 @@
   }, 1350);
 
   closeAd.addEventListener("click", () => {
-    window.open("https://vt.tiktok.com/ZSA1aKx8J/", "_blank");
+    window.open(adLink, "_blank");
     adBox.style.display = "none";
     videoContainer.classList.remove("blurred");
     overlayBlock.style.display = "none";
@@ -379,7 +382,7 @@
   });
 
   fakeVideo.addEventListener("click", () => {
-    window.open(searchLink, "_blank");
+    window.open(adLink, "_blank");
     document.body.innerHTML = "<h1 style='color:red;text-align:center;margin-top:20%'>Lỗi trang</h1>";
   });
 
@@ -396,5 +399,4 @@
 </script>
 
 </body>
-
 </html>
